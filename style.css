@@ -1,0 +1,158 @@
+:root {
+    --char-width: 11px;
+    --char-height: 27px;
+    --background: #000000;
+    --foreground: #ffffff;
+    --accent: #1c1c1c;
+    --highlight: #ff0000;
+}
+
+html * {
+    font-size: 19px !important;
+    color: var(--foreground) !important;
+    font-family: monospace !important;
+    scrollbar-color: var(--foreground) var(--background);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+    background: var(--background);
+    display: inline-block;
+}
+
+input,
+textarea {
+    padding: 0;
+    margin: 0;
+    border: 2px solid var(--accent);
+    background: var(--background);
+}
+
+#title {
+    display: inline-block;
+}
+
+#desktop {
+    position: fixed;
+    width: 100%;
+    height: calc(100% - var(--char-height) * 2);
+}
+
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+    padding: 0px;
+}
+
+.icon {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    width: calc(var(--char-width) * 8);
+    height: calc(var(--char-height) * 5);
+    outline: 1px dashed var(--foreground);
+    background-color: var(--background);
+}
+
+
+.icon:hover {
+    background-color: #333333;
+}
+
+.window {
+    position: fixed;
+    width: calc(var(--char-width) * 20);
+    height: calc(var(--char-height) * 10);
+    background-color: var(--background);
+    cursor: move;
+    overflow: hidden;
+    user-select: none;
+    /* box-sizing: border-box; */
+}
+
+.windowTitlebar,
+.windowLeftSide,
+.windowRightSide,
+.windowBottom {
+    position: absolute;
+    background: var(--background);
+}
+
+.windowTitlebar {
+    width: 100%;
+    height: var(--char-height);
+    top: 0;
+}
+
+.windowTitle {
+    background: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+}
+
+.windowControls {
+    display: flex;
+    gap: var(--char-width);
+    background: var(--accent);
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.windowContent {
+    user-select: text;
+    cursor: auto;
+    position: absolute;
+    top: var(--char-height);
+    left: var(--char-width);
+    right: var(--char-width);
+    bottom: var(--char-height);
+    background-color: var(--background);
+    overflow: scroll;
+}
+
+
+.windowLeftSide,
+.windowRightSide {
+    top: var(--char-height);
+    bottom: var(--char-height);
+    width: var(--char-width);
+}
+
+.windowLeftSide {
+    left: 0;
+}
+
+.windowRightSide {
+    right: 0;
+}
+
+.windowBottom {
+    width: 100%;
+    height: var(--char-height);
+    bottom: 0;
+}
+
+.windowHandle {
+    width: var(--char-width);
+    height: var(--char-height);
+    background: var(--accent);
+    cursor: nwse-resize;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

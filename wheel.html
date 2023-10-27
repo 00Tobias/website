@@ -1,0 +1,69 @@
+<style>
+  .wheel-wrapper {
+      width: auto;
+      height: auto;
+  }
+</style>
+<script type="module">
+  import {Wheel} from 'https://cdn.jsdelivr.net/npm/spin-wheel@4.3.0/dist/spin-wheel-esm.js';
+  import { createWindow } from "./window-manager.js";
+
+  const props = {
+      items: [
+          {
+              label: 'free spin :D',
+          },
+          {
+              label: 'he/him',
+          },
+          {
+              label: 'they/them',
+          },
+          {
+              label: 'she/her',
+          },
+          {
+              label: 'none',
+          },
+          {
+              label: 'neopronouns',
+          },
+      ],
+      rotationSpeedMax: 1000,
+      lineColor: "#FFFFFF",
+      borderColor: "#FFFFFF",
+      itemBackgroundColors: ["#000000", "#1c1c1c"],
+      itemLabelColors: ["#FFFFFF"],
+      lineWidth: 2,
+      borderWidth: 2,
+      itemLabelFont: "monospace",
+      overlayImage: "./wheel-overlay.svg",
+      pointerAngle: 90,
+  };
+
+  const container = document.getElementById('wheelWindowContent');
+  container.style.overflow = "hidden";
+  window.wheel = new Wheel(container, props);
+
+  function handleResize(entries) {
+      for (const entry of entries) {
+          window.wheel.resize();
+      }
+  }
+
+  const resizeObserver = new ResizeObserver(handleResize);
+  resizeObserver.observe(container);
+
+  wheel.onSpin = e => {
+      wheel.isInteractive = false;
+  }
+
+  wheel.onRest = e => {
+      const winningItem = props.items[e.currentIndex].label;
+      if (! e.currentIndex == 0) {
+          createWindow("pronouns", "Pronouns", Math.max(11, winningItem.length) + 2, 4, Math.max(11, winningItem.length) + 2, 4, winningItem);
+      } else {
+          wheel.isInteractive = true;
+      }
+  }
+</script>
