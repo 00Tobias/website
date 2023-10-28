@@ -44,6 +44,7 @@ textarea {
     position: fixed;
     width: 100%;
     height: calc(100% - var(--char-height) * 2);
+    background: var(--background);
 }
 
 #taskbar {
