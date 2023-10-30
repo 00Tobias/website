@@ -153,7 +153,6 @@ textarea {
     overflow: scroll;
 }
 
-
 .windowLeftSide,
 .windowRightSide {
     top: var(--char-height);
@@ -190,4 +189,29 @@ textarea {
     background: var(--foreground);
     color: var(--background) !important;
     box-shadow: 0px 0px 10px 0px var(--foreground);
+}
+
+@media (max-width: 800px) {
+    .windowMinimizeButton,
+    .windowMaximizeButton,
+    .windowHandle,
+    .windowLeftSide,
+    .windowRightSide,
+    .windowBottom {
+        display: none;
+    }
+
+    .windowContent {
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+    }
+
+    .window {
+        left: 0px !important;
+        top: 0px !important;
+        height: 100% !important;
+        width: 100% !important;
+        cursor: auto;
+    }
 }
