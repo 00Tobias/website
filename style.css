@@ -28,6 +28,14 @@ h1 {
     display: inline-block;
 }
 
+a {
+    font-weight: bold;
+}
+
+a:hover {
+    text-shadow: 0px 0px 10px var(--foreground);
+}
+
 input,
 textarea {
     padding: 0;
@@ -101,6 +109,7 @@ textarea {
     left: 0;
     top: 0;
     display: inline-block;
+    font-weight: bold;
 }
 
 .windowControls {
@@ -111,6 +120,13 @@ textarea {
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.windowCloseButton,
+.windowMaximizeButton,
+.windowMinimizeButton,
+.windowHandle {
+    font-weight: bold;
 }
 
 .windowCloseButton:hover,
