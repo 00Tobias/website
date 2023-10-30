@@ -66,7 +66,6 @@ textarea {
     background-color: var(--background);
 }
 
-
 .icon:hover {
     background-color: #333333;
 }
@@ -114,6 +113,18 @@ textarea {
     top: 0;
 }
 
+.windowCloseButton:hover,
+.windowMaximizeButton:hover,
+.windowMinimizeButton:hover {
+    background: var(--foreground);
+    color: var(--background) !important;
+    box-shadow: 0px 0px 10px 0px var(--foreground);
+}
+
+.windowCloseButton:hover {
+    color: var(--highlight) !important;
+}
+
 .windowContent {
     user-select: text;
     cursor: auto;
@@ -156,4 +167,11 @@ textarea {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.windowHandle:hover,
+.windowHandle:active {
+    background: var(--foreground);
+    color: var(--background) !important;
+    box-shadow: 0px 0px 10px 0px var(--foreground);
 }
