@@ -1,0 +1,21 @@
+<div id="consoleOutput"> </div>
+<style>
+ @media (max-width: 800px) {
+   #console {
+     height: 30% !important;
+     top: unset !important;
+     bottom: 0 !important;
+     z-index: 9999;
+   }
+ }
+</style>
+<script type="module">
+ var originalLog = console.log;
+
+ console.log = function(message) {
+   const consoleOutput = document.getElementById('consoleOutput');
+   consoleOutput.innerHTML += message + '<br>';
+   consoleOutput.scrollIntoView(false);
+   originalLog.apply(console, arguments);
+ };
+</script>
