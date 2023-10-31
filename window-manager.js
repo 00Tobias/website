@@ -124,7 +124,6 @@ export function createWindow(windowId, windowTitle = windowId, startingWidth = 2
 }
 
 function raiseWindow (windowDiv) {
-    window.location.hash = windowDiv.id;
     if (windowDiv !== windowDiv.parentNode.lastElementChild) {
         document.getElementById("windows").appendChild(windowDiv);
     }
@@ -166,61 +165,61 @@ function maximizeWindow (windowDiv) {
     }
 }
 
-function handleWindow (window, minWidth, minHeight) {
+function handleWindow (win, minWidth, minHeight) {
     let isResizing = false;
     let isMoving = false;
     let offsetX, offsetY;
 
-    window.addEventListener("mousedown", (e) => {
+    win.addEventListener("mousedown", (e) => {
         if (e.button === 2) {
             isMoving = false;
             isResizing = false;
         } else if (e.target.closest(".windowControls") || e.target.closest(".windowContent")) {
-            raiseWindow(window);
+            window.location.hash = win.id;
             isMoving = false;
             isResizing = false;
         } else if (e.target.classList.contains("windowHandle")) {
-            raiseWindow(window);
+            window.location.hash = win.id;
             isResizing = true;
         } else {
-            raiseWindow(window);
+            window.location.hash = win.id;
             isResizing = false;
             isMoving = true;
-            offsetX = e.clientX - window.getBoundingClientRect().left;
-            offsetY = e.clientY - window.getBoundingClientRect().top;
+            offsetX = e.clientX - win.getBoundingClientRect().left;
+            offsetY = e.clientY - win.getBoundingClientRect().top;
         }
     });
 
-    window.addEventListener("dblclick", (e) => {
+    win.addEventListener("dblclick", (e) => {
         if (! e.target.closest(".windowContent")) {
-            raiseWindow(window);
-            maximizeWindow(window);
+            window.location.hash = win.id;
+            maximizeWindow(win);
         }
     });
 
     document.addEventListener("mousemove", (e) => {
         if (isResizing) {
-            const newWidth = e.clientX - window.getBoundingClientRect().left;
-            const newHeight = e.clientY - window.getBoundingClientRect().top;
+            const newWidth = e.clientX - win.getBoundingClientRect().left;
+            const newHeight = e.clientY - win.getBoundingClientRect().top;
 
             const snappedWidth = Math.round(newWidth / charWidth) * charWidth;
             const snappedHeight = Math.round(newHeight / charHeight) * charHeight;
 
-            window.style.width = Math.max(snappedWidth, minWidth) + "px";
-            window.style.height = Math.max(snappedHeight, minHeight) + "px";
+            win.style.width = Math.max(snappedWidth, minWidth) + "px";
+            win.style.height = Math.max(snappedHeight, minHeight) + "px";
         } else if (isMoving) {
             const newX = e.clientX - offsetX;
             const newY = e.clientY - offsetY;
 
             if (windowMaximized) {
-                maximizeWindow(window);
-                window.style.left = Math.round((e.clientX - (window.offsetWidth / 2)) / charWidth) * charWidth + "px";
-                window.style.top = Math.round(e.clientY / charHeight) * charHeight + "px";
-                offsetX = e.clientX - window.getBoundingClientRect().left;
-                offsetY = e.clientY - window.getBoundingClientRect().top;
+                maximizeWindow(win);
+                win.style.left = Math.round((e.clientX - (win.offsetWidth / 2)) / charWidth) * charWidth + "px";
+                win.style.top = Math.round(e.clientY / charHeight) * charHeight + "px";
+                offsetX = e.clientX - win.getBoundingClientRect().left;
+                offsetY = e.clientY - win.getBoundingClientRect().top;
             } else {
-                window.style.left = Math.round(newX / charWidth) * charWidth + "px";
-                window.style.top = Math.round(newY / charHeight) * charHeight + "px";
+                win.style.left = Math.round(newX / charWidth) * charWidth + "px";
+                win.style.top = Math.round(newY / charHeight) * charHeight + "px";
             }
         }
     });
