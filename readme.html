@@ -1,0 +1,101 @@
+<p>The following is a fully-featured <a href="https://www.biwascheme.org/" target="_blank">BiwaScheme</a> REPL, feel free to <a href="https://scheme.com/tspl4/start.html" target="_blank">play around a little.</a></p>
+<div id="scheme">
+  <textarea id="schemeInput" name="schemeInput" rows="9" autofocus spellcheck="false" autocomplete="off" autocorrect="off"></textarea>
+  <div id="schemeOutput"></div>
+</div>
+<button id="schemeBrowserConsole" onclick="window.location.hash = 'console'">open browser console</button>
+<h1>About Me</h1> <i>(word choices still unrefined)</i>
+<p>My name is Tobias, I'm a programmer with a dedication to the minimal and composable.</p>
+<p>I enjoy attempting to write concise code that is clean and conveys meaning tersely.</p>
+<p>I love learning new things and have immense interest for anything digital.</p><br>
+<h1>Skills</h1>
+<p>I have been using Linux and Unix based operating systems since I was in grade school, and work fastest in front of a command line, I also host various services for myself and friends, and have hobby sysadmin experience.</p>
+<p>I program competently in:</p>
+<ul>
+  <li>Clojure, Common Lisp & Scheme</li>
+  <li>JavaScript & TypeScript</li>
+  <li>Python</li>
+  <li>C</li>
+</ul>
+<p>I speak fluent English and Swedish, a small amount of Spanish, and I am currently learning Chinese and <a href="https://en.wikipedia.org/wiki/Toki_Pona" target="_blank">Toki Pona</a> in my off-time.</p>
+<style>
+ #scheme {
+   display: flex;
+ }
+
+ #schemeInput,
+ #schemeOutput {
+   margin: var(--char-width);
+   flex: 1;
+ }
+
+ #schemeOutput {
+   border: 2px solid var(--accent);
+ }
+
+ #schemeBrowserConsole {
+   position: absolute;
+   right: 0;
+   margin-right: var(--char-width);
+ }
+
+ @media (max-width: 800px) {
+   #scheme {
+     display: grid;
+   }
+ }
+</style>
+<script type="module">
+ import BiwaScheme from 'https://cdn.jsdelivr.net/npm/biwascheme@0.8.0/release/biwascheme.min.mjs';
+
+ const schemeInput = document.getElementById('schemeInput');
+ const schemeOutput = document.getElementById('schemeOutput');
+
+ schemeInput.value = `(let ((interests
+       (list "Operating system design"
+             "Linux & BSD"
+             "Functional Programming"
+             "Frontend"
+             "Sysadmin & Backend"
+             "Language learning")))
+  (console-log interests))`;
+
+ function compile(input) {
+   biwa.evaluate(input, function(result) {
+     schemeOutput.textContent = result;
+     schemeOutput.style.border = "2px solid var(--accent)";
+     schemeOutput.style.boxShadow = "none";
+   });
+ }
+
+ const onError = function(e) {
+   schemeOutput.textContent = e;
+   schemeOutput.style.border = "2px solid var(--highlight)";
+   schemeOutput.style.boxShadow = "0px 0px 10px 0px var(--highlight)";
+ }
+ const biwa = new BiwaScheme.Interpreter(onError)
+ compile(schemeInput.value);
+ schemeInput.addEventListener('input', function(e) {
+   // If the user inputs a parenthesis or ", automatically close it
+   if (e.data?.length === 1 && e.data === "(") {
+     const start = schemeInput.selectionStart;
+     const end = schemeInput.selectionEnd;
+     schemeInput.value = schemeInput.value.slice(0, start) + ")" + schemeInput.value.slice(start, schemeInput.value.length);
+     schemeInput.selectionStart = start;
+     schemeInput.selectionEnd = end;
+   }
+   if (e.data?.length === 1 && e.data === '"') {
+     const start = schemeInput.selectionStart;
+     const end = schemeInput.selectionEnd;
+     schemeInput.value = schemeInput.value.slice(0, start) + '"' + schemeInput.value.slice(start, schemeInput.value.length);
+     schemeInput.selectionStart = start;
+     schemeInput.selectionEnd = end;
+   }
+
+   // Automatically resize the input window to fit the entire code
+   schemeInput.style.height = "auto";
+   schemeInput.style.height = (schemeInput.scrollHeight) + "px";
+
+   compile(schemeInput.value);
+ });
+</script>
