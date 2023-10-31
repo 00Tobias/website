@@ -7,13 +7,15 @@
     <title>nights.rest</title>
     <link rel="stylesheet" href="./style.css">
     <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon"> -->
+    <script type="module" src="windows.js"></script>
+    <!-- <script type="module" src="taskbar.js"></script> -->
   </head>
   <body>
     <main id="desktop">
-      <div id="title">very much a wip</div>
+      <div id="title">welcome to my personal website</div>
+      <p>this is still very early in development, feel free to check out the <a href="#websiteSource">source</a>. (loads in an iframe, which at the moment is kinda scuffed with how I raise windows, here's a <a href="https://git.sr.ht/~terra/website" target="_blank">direct link</a> for now)</p><br>
+      <span>Or you can read</span> <button onclick="window.location.hash = 'readme'">about me</button>
       <div id="windows"></div>
     </main>
-	  <script type="module" src="windows.js"></script>
-    <!-- <script type="module" src="taskbar.js"></script> -->
   </body>
 </html>
