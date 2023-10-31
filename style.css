@@ -26,6 +26,13 @@ h1 {
     margin: 0;
     background: var(--background);
     display: inline-block;
+    text-decoration: underline solid var(--highlight);
+    text-decoration-thickness: 2px;
+}
+
+p {
+    margin-top: var(--char-height);
+    margin-bottom: 0px;
 }
 
 a {
@@ -41,7 +48,27 @@ textarea {
     padding: 0;
     margin: 0;
     border: 2px solid var(--accent);
+    outline: none;
     background: var(--background);
+    resize: none;
+}
+
+button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border: 2px solid var(--accent);
+    background-color: var(--background);
+}
+
+button:hover {
+    background-color: var(--accent);
+    box-shadow: 0px 0px 10px 0px var(--accent);
+}
+
+iframe {
+    border: none;
+    position: absolute;
 }
 
 #title {
@@ -59,23 +86,14 @@ textarea {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #333;
+    background-color: var(--accent);
     text-align: center;
     padding: 0px;
 }
 
 .icon {
-    padding: 0;
-    margin: 0;
-    border: 0;
     width: calc(var(--char-width) * 8);
     height: calc(var(--char-height) * 5);
-    outline: 1px dashed var(--foreground);
-    background-color: var(--background);
-}
-
-.icon:hover {
-    background-color: #333333;
 }
 
 .window {
@@ -86,7 +104,6 @@ textarea {
     cursor: move;
     overflow: hidden;
     user-select: none;
-    /* box-sizing: border-box; */
 }
 
 .windowTitlebar,
@@ -151,6 +168,7 @@ textarea {
     bottom: var(--char-height);
     background-color: var(--background);
     overflow: scroll;
+    box-sizing: border-box;
 }
 
 .windowLeftSide,
