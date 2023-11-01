@@ -19,23 +19,32 @@
 </ul>
 <p>I speak fluent English and Swedish, a small amount of Spanish, and I am currently learning Chinese and <a href="https://en.wikipedia.org/wiki/Toki_Pona" target="_blank">Toki Pona</a> in my off-time.</p>
 <style>
+ #readmeWindowContent {
+   padding-left: var(--char-width);
+   padding-right: var(--char-width);
+   padding-bottom: var(--char-height);
+ }
+
  #scheme {
    display: flex;
+   margin-top: var(--char-height);
+   margin-left: var(--char-width);
+   margin-right: var(--char-width);
+   margin-bottom: var(--char-height);
  }
 
  #schemeInput,
  #schemeOutput {
-   margin: var(--char-width);
    flex: 1;
  }
 
  #schemeOutput {
+   margin-left: var(--char-width);
    border: 2px solid var(--accent);
  }
 
  #schemeBrowserConsole {
-   position: absolute;
-   right: 0;
+   float: right;
    margin-right: var(--char-width);
  }
 
