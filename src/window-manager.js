@@ -78,7 +78,7 @@ export function createWindow(windowId, windowTitle = windowId, startingWidth = 2
     const windowCloseDiv = document.createElement("div");
     windowCloseDiv.className = "windowCloseButton";
     windowCloseDiv.appendChild(document.createTextNode("X"));
-    windowCloseDiv.addEventListener("click", function(){ windowDiv.remove();}, false);
+    windowCloseDiv.addEventListener("click", function(){ closeWindow(windowDiv);}, false);
     windowControlsDiv.appendChild(windowCloseDiv);
 
     const windowContentDiv = document.createElement("div");
@@ -129,6 +129,16 @@ function raiseWindow (windowDiv) {
     }
 }
 
+
+function closeWindow (windowDiv) {
+    const nextWindowDiv = windowDiv.previousElementSibling;
+    windowDiv.remove();
+    if (nextWindowDiv) {
+        window.location.hash = nextWindowDiv.id;
+    } else {
+        window.location.hash = "";
+    }
+}
 
 function minimizeWindow (windowDiv) {
     windowDiv.style.display = "none";
