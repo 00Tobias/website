@@ -19,48 +19,52 @@
 </ul>
 <p>I speak fluent English and Swedish, a small amount of Spanish, and I am currently learning Chinese and <a href="https://en.wikipedia.org/wiki/Toki_Pona" target="_blank">Toki Pona</a> in my off-time.</p>
 <style>
- #readmeWindowContent {
-   padding-left: var(--char-width);
-   padding-right: var(--char-width);
-   padding-bottom: var(--char-height);
- }
+  #readmeWindowContent {
+    padding-left: var(--char-width);
+    padding-right: var(--char-width);
+    padding-bottom: var(--char-height);
+  }
 
- #scheme {
-   display: flex;
-   margin-top: var(--char-height);
-   margin-left: var(--char-width);
-   margin-right: var(--char-width);
-   margin-bottom: var(--char-height);
- }
+  #scheme {
+    display: flex;
+    margin-top: var(--char-height);
+    margin-left: var(--char-width);
+    margin-right: var(--char-width);
+    margin-bottom: var(--char-height);
+  }
 
- #schemeInput,
- #schemeOutput {
-   flex: 1;
- }
+  #schemeInput,
+  #schemeOutput {
+    flex: 1;
+  }
 
- #schemeOutput {
-   margin-left: var(--char-width);
-   border: 2px solid var(--accent);
- }
+  #schemeOutput {
+    margin-left: var(--char-width);
+    border: 2px solid var(--accent);
+  }
 
- #schemeBrowserConsole {
-   float: right;
-   margin-right: var(--char-width);
- }
+  #schemeBrowserConsole {
+    float: right;
+    margin-right: var(--char-width);
+  }
 
- @media (max-width: 800px) {
-   #scheme {
-     display: grid;
-   }
- }
+  @media (max-width: 800px) {
+    #scheme {
+      display: grid;
+    }
+    #schemeOutput {
+      margin-left: 0px;
+      margin-top: var(--char-height);
+    }
+  }
 </style>
 <script type="module">
- import BiwaScheme from 'https://cdn.jsdelivr.net/npm/biwascheme@0.8.0/release/biwascheme.min.mjs';
+  import BiwaScheme from 'https://cdn.jsdelivr.net/npm/biwascheme@0.8.0/release/biwascheme.min.mjs';
 
- const schemeInput = document.getElementById('schemeInput');
- const schemeOutput = document.getElementById('schemeOutput');
+  const schemeInput = document.getElementById('schemeInput');
+  const schemeOutput = document.getElementById('schemeOutput');
 
- schemeInput.value = `(let ((interests
+  schemeInput.value = `(let ((interests
        (list "Operating system design"
              "Linux & BSD"
              "Functional Programming"
@@ -69,42 +73,42 @@
              "Language learning")))
   (console-log interests))`;
 
- function compile(input) {
-   biwa.evaluate(input, function(result) {
-     schemeOutput.textContent = result;
-     schemeOutput.style.border = "2px solid var(--accent)";
-     schemeOutput.style.boxShadow = "none";
-   });
- }
+  function compile(input) {
+    biwa.evaluate(input, function(result) {
+      schemeOutput.textContent = result;
+      schemeOutput.style.border = "2px solid var(--accent)";
+      schemeOutput.style.boxShadow = "none";
+    });
+  }
 
- const onError = function(e) {
-   schemeOutput.textContent = e;
-   schemeOutput.style.border = "2px solid var(--highlight)";
-   schemeOutput.style.boxShadow = "0px 0px 10px 0px var(--highlight)";
- }
- const biwa = new BiwaScheme.Interpreter(onError)
- compile(schemeInput.value);
- schemeInput.addEventListener('input', function(e) {
-   // If the user inputs a parenthesis or ", automatically close it
-   if (e.data?.length === 1 && e.data === "(") {
-     const start = schemeInput.selectionStart;
-     const end = schemeInput.selectionEnd;
-     schemeInput.value = schemeInput.value.slice(0, start) + ")" + schemeInput.value.slice(start, schemeInput.value.length);
-     schemeInput.selectionStart = start;
-     schemeInput.selectionEnd = end;
-   }
-   if (e.data?.length === 1 && e.data === '"') {
-     const start = schemeInput.selectionStart;
-     const end = schemeInput.selectionEnd;
-     schemeInput.value = schemeInput.value.slice(0, start) + '"' + schemeInput.value.slice(start, schemeInput.value.length);
-     schemeInput.selectionStart = start;
-     schemeInput.selectionEnd = end;
-   }
+  const onError = function(e) {
+    schemeOutput.textContent = e;
+    schemeOutput.style.border = "2px solid var(--highlight)";
+    schemeOutput.style.boxShadow = "0px 0px 10px 0px var(--highlight)";
+  }
+  const biwa = new BiwaScheme.Interpreter(onError)
+  compile(schemeInput.value);
+  schemeInput.addEventListener('input', function(e) {
+    // If the user inputs a parenthesis or ", automatically close it
+    if (e.data?.length === 1 && e.data === "(") {
+      const start = schemeInput.selectionStart;
+      const end = schemeInput.selectionEnd;
+      schemeInput.value = schemeInput.value.slice(0, start) + ")" + schemeInput.value.slice(start, schemeInput.value.length);
+      schemeInput.selectionStart = start;
+      schemeInput.selectionEnd = end;
+    }
+    if (e.data?.length === 1 && e.data === '"') {
+      const start = schemeInput.selectionStart;
+      const end = schemeInput.selectionEnd;
+      schemeInput.value = schemeInput.value.slice(0, start) + '"' + schemeInput.value.slice(start, schemeInput.value.length);
+      schemeInput.selectionStart = start;
+      schemeInput.selectionEnd = end;
+    }
 
-   // Automatically resize the input window to fit the entire code
-   schemeInput.style.height = "auto";
-   schemeInput.style.height = (schemeInput.scrollHeight) + "px";
+    // Automatically resize the input window to fit the entire code
+    schemeInput.style.height = "auto";
+    schemeInput.style.height = (schemeInput.scrollHeight) + "px";
 
-   compile(schemeInput.value);
- });
+    compile(schemeInput.value);
+  });
 </script>
