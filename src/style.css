@@ -71,6 +71,23 @@ iframe {
     position: absolute;
 }
 
+::-webkit-scrollbar {
+    width: var(--char-width);
+    background-color: var(--background);
+}
+
+::-webkit-scrollbar:hover {
+    background-color: var(--accent);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--foreground);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--highlight);
+}
+
 #title {
     display: inline-block;
 }
@@ -167,7 +184,8 @@ iframe {
     right: var(--char-width);
     bottom: var(--char-height);
     background-color: var(--background);
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     box-sizing: border-box;
 }
 
