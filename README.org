@@ -4,10 +4,9 @@ This repo contains the source files for my personal website, at [[nights.rest]].
 The windows are simple HTML files with embedded JavaScript and CSS that get fetched and injected to the document using JavaScript.
 Almost everything is based on the character width and height of a monospace font, which gets grabbed through reading the pixel height and pixel length of a div and dividing the length by the number of characters. 
 It's fully static with no backend code and none of the code is bundled or minified (for now) for simplicity's sake, so feel free to read through it with the browser console.
-* Compile files to =dist/=
-In the =src/= directory
+* Compile files from =src/= to =dist/=
 #+begin_src shell
-  mkdir -p ../dist && find -type f ! \( -iname '*.js' -o -iname '*.css' \) -exec cp {} ../dist \; && npx esbuild --minify --bundle --outdir=../dist *.js *.css
+  mkdir -p ./dist && find ./src/ -type f ! \( -iname '*.js' -o -iname '*.css' \) -exec cp {} ./dist \; && npx esbuild --minify --bundle --outdir=./dist ./src/*.js ./src/*.css
 #+end_src
 * Things left to do
 - [ ] A taskbar for minimized windows
