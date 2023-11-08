@@ -4,8 +4,11 @@
     --background: #000000;
     --foreground: #ffffff;
     --accent: #1c1c1c;
+    --brighter-accent: #404040;
     --highlight: #ff0000;
 }
+
+/* Browser elements */
 
 html * {
     font-size: 19px !important;
@@ -43,8 +46,7 @@ a:hover {
     text-shadow: 0px 0px 10px var(--foreground);
 }
 
-input,
-textarea {
+input, textarea {
     padding: 0;
     margin: 0;
     border: 2px solid var(--accent);
@@ -88,6 +90,8 @@ iframe {
     background-color: var(--highlight);
 }
 
+/* Desktop */
+
 #title {
     display: inline-block;
 }
@@ -99,19 +103,102 @@ iframe {
     background: var(--background);
 }
 
-#taskbar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: var(--accent);
-    text-align: center;
-    padding: 0px;
-}
-
 .icon {
     width: calc(var(--char-width) * 8);
     height: calc(var(--char-height) * 5);
 }
+
+/* Taskbar */
+
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: calc(var(--char-height) * 2);
+    background-color: #0c0c0c;
+    user-select: none;
+    overflow: hidden;
+    display: flex;
+}
+
+.taskbarSeparator {
+    margin-left: calc(var(--char-width) * 2);
+    margin-right: calc(var(--char-width) * 2);
+    color: var(--brighter-accent) !important;
+}
+
+#taskbarLeft {
+    order: 1;
+    display: flex;
+}
+
+#taskbarRight {
+    order: 3;
+    display: flex;
+    margin-left: auto;
+}
+
+#taskbarMiddle {
+    display: flex;
+    order: 2;
+}
+
+#taskbarEntries {
+    display: flex;
+}
+
+#taskbarEntriesLeftCap {
+    z-index: 7;
+    background: #0c0c0c;
+    color: var(--brighter-accent) !important;
+    margin-right: calc(-1 * var(--char-width));
+}
+
+#taskbarEntriesRightCap {
+    z-index: 7;
+    background: #0c0c0c;
+    color: var(--brighter-accent) !important;
+}
+
+.taskbarEntry {
+    color: var(--brighter-accent) !important;
+    padding-left: var(--char-width);
+    padding-right: var(--char-width);
+    margin-right: calc(-1 * var(--char-width));
+    position: relative;
+}
+
+.taskbarEntry:hover{
+    background: var(--foreground);
+    color: var(--background) !important;
+    z-index: 9;
+    box-shadow: 0px 0px 10px 0px var(--foreground);
+}
+
+.taskbarActive {
+    background: var(--accent);
+    color: var(--foreground) !important;
+    z-index: 8;
+}
+
+.taskbarEntryTitle, .taskbarEntryLeft, .taskbarEntryRight {
+    background: inherit !important;
+    color: inherit !important;
+}
+
+.taskbarEntryLeft {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.taskbarEntryRight {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+/* Windows */
 
 .window {
     position: fixed;
@@ -189,8 +276,7 @@ iframe {
     box-sizing: border-box;
 }
 
-.windowLeftSide,
-.windowRightSide {
+.windowLeftSide, .windowRightSide {
     top: var(--char-height);
     bottom: var(--char-height);
     width: var(--char-width);
@@ -227,7 +313,10 @@ iframe {
     box-shadow: 0px 0px 10px 0px var(--foreground);
 }
 
+/* Responsive design */
+
 @media (max-width: 800px) {
+    #taskbar,
     .windowMinimizeButton,
     .windowMaximizeButton,
     .windowHandle,

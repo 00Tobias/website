@@ -4,7 +4,6 @@ var windows = Array.from(document.getElementsByClassName("window"));
 
 const charWidth = document.getElementById("title").getBoundingClientRect().width / document.getElementById("title").textContent.length;
 const charHeight = document.getElementById("title").getBoundingClientRect().height;
-const fontSize = window.getComputedStyle(document.getElementById("title"), null).getPropertyValue('font-size');
 
 document.documentElement.style.setProperty("--char-width", charWidth + "px");
 document.documentElement.style.setProperty("--char-height", charHeight + "px");
@@ -37,7 +36,15 @@ function fetchAndInjectHTML(url, targetDivId) {
         .catch(error => console.error("Error fetching HTML:", error));
 }
 
-export function createWindow(windowId, windowTitle = windowId, startingWidth = 20, startingHeight = 10, minWidth = 18, minHeight = 5, content = null) {
+export function createWindow(
+    windowId,
+    windowTitle = windowId,
+    startingWidth = 20,
+    startingHeight = 10,
+    minWidth = 18,
+    minHeight = 5,
+    content = null
+) {
     if (document.getElementById(windowId)) {
         raiseWindow(document.getElementById(windowId));
         return;
@@ -51,11 +58,12 @@ export function createWindow(windowId, windowTitle = windowId, startingWidth = 2
 
     const windowTitlebarDiv = document.createElement("div");
     windowTitlebarDiv.className = "windowTitlebar";
-    // yes, this is actually how i do it. it works alright
+    // yes, this is actually how i do it. it works alright (it also compressess well)
     windowTitlebarDiv.textContent = "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 
     const windowTitleDiv = document.createElement("div");
     windowTitleDiv.className = "windowTitle";
+    windowTitleDiv.id = windowDiv.id + "Title";
     windowTitleDiv.appendChild(document.createTextNode(windowTitle));
     windowTitlebarDiv.appendChild(windowTitleDiv);
 
@@ -88,7 +96,7 @@ export function createWindow(windowId, windowTitle = windowId, startingWidth = 2
     if (content) {
         windowContentDiv.innerHTML = content;
     } else {
-        fetchAndInjectHTML("./" + windowId + ".html", windowDiv.id + "WindowContent");
+        fetchAndInjectHTML("./windows/" + windowId + ".html", windowDiv.id + "WindowContent");
     }
 
     const windowBottomDiv = document.createElement("div");
@@ -119,14 +127,19 @@ export function createWindow(windowId, windowTitle = windowId, startingWidth = 2
     windowDiv.style.left = Math.round(((window.innerWidth / 2) - (windowDiv.offsetWidth / 2)) / charWidth) * charWidth + "px";
     windowDiv.style.top = Math.round(((window.innerHeight / 2) - (windowDiv.offsetHeight / 2)) / charHeight) * charHeight + "px";
 
+    openWindowList[windowDiv.id] = windowTitleDiv.textContent;
     window.location.hash = windowDiv.id;
     handleWindow(windowDiv, charWidth * minWidth, charHeight * minHeight);
 }
+
+// Make sure createWindow is available in the global page scope
+window.createWindow = createWindow;
 
 function raiseWindow (windowDiv) {
     if (windowDiv !== windowDiv.parentNode.lastElementChild) {
         document.getElementById("windows").appendChild(windowDiv);
     }
+    windowDiv.style.display = "revert";
 }
 
 
@@ -138,11 +151,17 @@ function closeWindow (windowDiv) {
     } else {
         window.location.hash = "";
     }
+    delete openWindowList[windowDiv.id];
 }
 
 function minimizeWindow (windowDiv) {
+    const nextWindowDiv = windowDiv.previousElementSibling;
     windowDiv.style.display = "none";
-    // TODO: display: revert
+    if (nextWindowDiv) {
+        window.location.hash = nextWindowDiv.id;
+    } else {
+        window.location.hash = "";
+    }
 }
 
 var windowLeft = 0;
