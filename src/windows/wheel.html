@@ -1,42 +1,58 @@
+<div id="wheelSpinButton"></div>
 <style>
   #wheelWindowContent {
     position: absolute;
+  }
+
+  #wheelSpinButton {
+    z-index: 9;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 16%;
+    padding-bottom: 16%;
+    height: 0;
+    background: none !important;
+    cursor: pointer;
   }
 </style>
 <script type="module">
   import { Wheel } from 'https://cdn.jsdelivr.net/npm/spin-wheel@4.3.0/dist/spin-wheel-esm.js';
 
   const props = {
-      items: [
-          {
-              label: 'free spin :D',
-          },
-          {
-              label: 'he/him',
-          },
-          {
-              label: 'they/them',
-          },
-          {
-              label: 'she/her',
-          },
-          {
-              label: 'none',
-          },
-          {
-              label: 'neopronouns',
-          },
-      ],
-      rotationSpeedMax: 1000,
-      lineColor: "#FFFFFF",
-      borderColor: "#FFFFFF",
-      itemBackgroundColors: ["#000000", "#1c1c1c"],
-      itemLabelColors: ["#FFFFFF"],
-      lineWidth: 2,
-      borderWidth: 2,
-      itemLabelFont: "monospace",
-      overlayImage: "../assets/wheel-overlay.svg",
-      pointerAngle: 90,
+    items: [
+      {
+        label: 'free spin :D',
+      },
+      {
+        label: 'he/him',
+      },
+      {
+        label: 'they/them',
+      },
+      {
+        label: 'she/her',
+      },
+      {
+        label: 'none',
+      },
+      {
+        label: 'neopronouns',
+      },
+    ],
+    rotationSpeedMax: 1000,
+    lineColor: "#FFFFFF",
+    borderColor: "#FFFFFF",
+    itemBackgroundColors: ["#000000", "#1c1c1c"],
+    itemLabelColors: ["#FFFFFF"],
+    lineWidth: 2,
+    borderWidth: 2,
+    itemLabelFont: "monospace",
+    overlayImage: "../assets/wheel-overlay.svg",
+    pointerAngle: 90,
   };
 
   const container = document.getElementById('wheelWindowContent');
@@ -44,25 +60,37 @@
   window.wheel = new Wheel(container, props);
 
   function handleResize(entries) {
-      for (const entry of entries) {
-          window.wheel.resize();
-      }
+    for (const entry of entries) {
+      window.wheel.resize();
+    }
   }
 
   const resizeObserver = new ResizeObserver(handleResize);
   resizeObserver.observe(container);
 
+  function spinWheel() {
+    wheel.spin(Math.floor(Math.random() * (Math.floor(600) - Math.ceil(200)) + Math.ceil(200)));
+  }
+
+  const spinWheelButton = document.getElementById("wheelSpinButton")
+
+  spinWheelButton.addEventListener("click", spinWheel);
+
   wheel.onSpin = e => {
-      wheel.isInteractive = false;
+    wheel.isInteractive = false;
+    spinWheelButton.removeEventListener("click", spinWheel);
+    spinWheelButton.style.cursor = "auto";
   }
 
   wheel.onRest = e => {
-      const winningItem = props.items[e.currentIndex].label;
-      if (! e.currentIndex == 0) {
-          createWindowList.pronouns = () => createWindow("pronouns", "Pronouns", Math.max(11, winningItem.length) + 2, 4, Math.max(11, winningItem.length) + 2, 4, winningItem);
-          window.location.hash = "pronouns";
-      } else {
-          wheel.isInteractive = true;
-      }
+    const winningItem = props.items[e.currentIndex].label;
+    if (! e.currentIndex == 0) {
+      createWindowList.pronouns = () => createWindow("pronouns", "Pronouns", Math.max(11, winningItem.length) + 2, 4, Math.max(11, winningItem.length) + 2, 4, winningItem);
+      window.location.hash = "pronouns";
+    } else {
+      wheel.isInteractive = true;
+      spinWheelButton.addEventListener("click", spinWheel);
+      spinWheelButton.style.cursor = "pointer";
+    }
   }
 </script>
