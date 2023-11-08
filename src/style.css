@@ -10,7 +10,7 @@
 
 /* Browser elements */
 
-html {
+html, body {
     overscroll-behavior: none;
 }
 
