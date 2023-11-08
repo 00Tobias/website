@@ -11,4 +11,4 @@ ln -rs ./src/windows ./dist/
 ln -rs ./src/*.html ./dist/
 
 # Minify and bundle JS and CSS files
-npx --yes esbuild --minify --bundle --platform=browser --outdir=./dist ./src/windows.js ./src/*.css
+npx --yes esbuild --minify --bundle --platform=browser --outdir=./dist ./src/main.js ./src/*.css
