@@ -10,7 +10,6 @@ It's fully static with no backend code and none of the code is bundled or minifi
   sh build.sh
 #+end_src
 * Things left to do
-- [ ] A taskbar for minimized windows
 - [ ] Desktop icons for the windows
 - [ ] A blog system
 - [ ] Various bugfixes regarding window management
