@@ -4,8 +4,7 @@
  }
 </style>
 <script type="module">
-  import {Wheel} from 'https://cdn.jsdelivr.net/npm/spin-wheel@4.3.0/dist/spin-wheel-esm.js';
-  import { createWindow } from "./window-manager.js";
+  import { Wheel } from 'https://cdn.jsdelivr.net/npm/spin-wheel@4.3.0/dist/spin-wheel-esm.js';
 
   const props = {
       items: [
@@ -60,7 +59,8 @@
   wheel.onRest = e => {
       const winningItem = props.items[e.currentIndex].label;
       if (! e.currentIndex == 0) {
-          createWindow("pronouns", "Pronouns", Math.max(11, winningItem.length) + 2, 4, Math.max(11, winningItem.length) + 2, 4, winningItem);
+          createWindowList.pronouns = () => createWindow("pronouns", "Pronouns", Math.max(11, winningItem.length) + 2, 4, Math.max(11, winningItem.length) + 2, 4, winningItem);
+          window.location.hash = "pronouns";
       } else {
           wheel.isInteractive = true;
       }
