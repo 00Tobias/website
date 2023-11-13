@@ -44,10 +44,13 @@ p {
 
 a {
     font-weight: bold;
+    text-decoration: underline solid var(--brighter-accent);
+    text-decoration-thickness: 2px;
 }
 
 a:hover {
     text-shadow: 0px 0px 10px var(--foreground);
+    text-decoration: none;
 }
 
 input, textarea {
