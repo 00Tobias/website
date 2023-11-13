@@ -129,21 +129,27 @@ export function createWindow(
 
     openWindowList[windowDiv.id] = windowTitleDiv.textContent;
     window.location.hash = windowDiv.id;
+    raiseWindow(windowDiv);
     handleWindow(windowDiv, charWidth * minWidth, charHeight * minHeight);
 }
 
 // Make sure createWindow is available in the global page scope
 window.createWindow = createWindow;
 
-function raiseWindow (windowDiv) {
-    if (windowDiv !== windowDiv.parentNode.lastElementChild) {
-        document.getElementById("windows").appendChild(windowDiv);
+var windowStack = [];
+function raiseWindow(windowDiv) {
+    if (!windowStack.includes(windowDiv)) {
+        windowStack.push(windowDiv);
     }
+
+    windowStack.splice(windowStack.indexOf(windowDiv), 1);
+    windowStack.push(windowDiv);
+
+    windowStack.forEach((elm) => (elm.style.zIndex = windowStack.indexOf(elm)));
     windowDiv.style.display = "revert";
 }
 
-
-function closeWindow (windowDiv) {
+function closeWindow(windowDiv) {
     const nextWindowDiv = windowDiv.previousElementSibling;
     windowDiv.remove();
     if (nextWindowDiv) {
@@ -154,7 +160,7 @@ function closeWindow (windowDiv) {
     delete openWindowList[windowDiv.id];
 }
 
-function minimizeWindow (windowDiv) {
+function minimizeWindow(windowDiv) {
     const nextWindowDiv = windowDiv.previousElementSibling;
     windowDiv.style.display = "none";
     if (nextWindowDiv) {
@@ -170,7 +176,7 @@ var windowWidth = 0;
 var windowHeight = 0;
 var windowMaximized = false;
 
-function maximizeWindow (windowDiv) {
+function maximizeWindow(windowDiv) {
     if (windowMaximized) {
         windowDiv.style.left = windowLeft + "px";
         windowDiv.style.top = windowTop + "px";
@@ -194,7 +200,7 @@ function maximizeWindow (windowDiv) {
     }
 }
 
-function handleWindow (win, minWidth, minHeight) {
+function handleWindow(win, minWidth, minHeight) {
     let isResizing = false;
     let isMoving = false;
     let offsetX, offsetY;
@@ -220,7 +226,7 @@ function handleWindow (win, minWidth, minHeight) {
     });
 
     win.addEventListener("dblclick", (e) => {
-        if (! e.target.closest(".windowContent")) {
+        if (!e.target.closest(".windowContent")) {
             window.location.hash = win.id;
             maximizeWindow(win);
         }

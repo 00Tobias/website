@@ -127,6 +127,7 @@ iframe {
     user-select: none;
     overflow: hidden;
     display: flex;
+    z-index: 96;
 }
 
 .taskbarSeparator {
@@ -156,14 +157,14 @@ iframe {
 }
 
 #taskbarEntriesLeftCap {
-    z-index: 7;
+    z-index: 97;
     background: #0c0c0c;
     color: var(--brighter-accent) !important;
     margin-right: calc(-1 * var(--char-width));
 }
 
 #taskbarEntriesRightCap {
-    z-index: 7;
+    z-index: 97;
     background: #0c0c0c;
     color: var(--brighter-accent) !important;
 }
@@ -176,20 +177,22 @@ iframe {
     position: relative;
 }
 
-.taskbarEntry:hover{
+.taskbarEntry:hover {
     background: var(--foreground);
     color: var(--background) !important;
-    z-index: 9;
+    z-index: 99;
     box-shadow: 0px 0px 10px 0px var(--foreground);
 }
 
 .taskbarActive {
     background: var(--accent);
     color: var(--foreground) !important;
-    z-index: 8;
+    z-index: 98;
 }
 
-.taskbarEntryTitle, .taskbarEntryLeft, .taskbarEntryRight {
+.taskbarEntryTitle,
+.taskbarEntryLeft,
+.taskbarEntryRight {
     background: inherit !important;
     color: inherit !important;
 }
@@ -271,7 +274,7 @@ iframe {
 }
 
 .windowContent {
-    user-select: text;
+    user-select: contain;
     cursor: auto;
     position: absolute;
     top: var(--char-height);
