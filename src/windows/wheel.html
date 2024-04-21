@@ -59,10 +59,8 @@
   container.style.overflow = "hidden";
   window.wheel = new Wheel(container, props);
 
-  function handleResize(entries) {
-    for (const entry of entries) {
+  function handleResize() {
       window.wheel.resize();
-    }
   }
 
   const resizeObserver = new ResizeObserver(handleResize);
