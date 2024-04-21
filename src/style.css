@@ -5,6 +5,7 @@
     --foreground: #ffffff;
     --accent: #1c1c1c;
     --brighter-accent: #404040;
+    --darker-accent: #0c0c0c;
     --highlight: #ff0000;
 }
 
@@ -126,7 +127,7 @@ iframe {
     bottom: 0;
     width: 100%;
     height: calc(var(--char-height) * 2);
-    background-color: #0c0c0c;
+    background-color: var(--darker-accent);
     user-select: none;
     overflow: hidden;
     display: flex;
@@ -161,14 +162,14 @@ iframe {
 
 #taskbarEntriesLeftCap {
     z-index: 97;
-    background: #0c0c0c;
+    background: var(--darker-accent);
     color: var(--brighter-accent) !important;
     margin-right: calc(-1 * var(--char-width));
 }
 
 #taskbarEntriesRightCap {
     z-index: 97;
-    background: #0c0c0c;
+    background: var(--darker-accent);
     color: var(--brighter-accent) !important;
 }
 
