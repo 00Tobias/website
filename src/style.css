@@ -309,6 +309,7 @@ iframe {
     width: 100%;
     height: var(--char-height);
     bottom: 0;
+    white-space: nowrap;
 }
 
 .windowHandle {
