@@ -1,0 +1,3 @@
+[submodule "src/windows/dragonfly"]
+	path = src/windows/dragonfly
+	url = https://git.sr.ht/~terra/dragonfly

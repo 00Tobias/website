@@ -7,6 +7,7 @@ import { updateTaskbar } from "./taskbar.js";
 const createWindowList = {
     wheel: () => createWindow("wheel", "Pronoun wheel", 55, 23, 35, 16),
     readme: () => createWindow("readme", "readme", 89, 22, 38, 8),
+    dragonfly: () => createWindow("dragonfly", "dragonfly", 116, 38, 38, 8),
     console: () => createWindow("console", "console", 33, 9, 20, 4),
     injured: () => createWindow("injured", "hope this helps :D", 26, 12, 26, 12),
 };
