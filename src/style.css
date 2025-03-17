@@ -43,6 +43,10 @@ p {
     margin-bottom: 0px;
 }
 
+pre {
+    margin: 0px;
+}
+
 a {
     font-weight: bold;
     text-decoration: underline solid var(--brighter-accent);
@@ -67,13 +71,14 @@ button {
     padding: 0;
     margin: 0;
     border: 0;
-    border: 2px solid var(--accent);
-    background-color: var(--background);
+    background-color: var(--accent);
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: var(--accent);
-    box-shadow: 0px 0px 10px 0px var(--accent);
+    color: var(--background) !important;
+    background-color: var(--foreground);
+    box-shadow: 0px 0px 10px 0px var(--foreground);
 }
 
 iframe {
@@ -115,9 +120,10 @@ iframe {
     background: var(--background);
 }
 
-.icon {
-    width: calc(var(--char-width) * 8);
-    height: calc(var(--char-height) * 5);
+.desktopIcon {
+    width: calc(var(--char-width) * 9);
+    height: calc(var(--char-height) * 4);
+    margin-left: calc(var(--char-width) * 2);
 }
 
 /* Taskbar */
