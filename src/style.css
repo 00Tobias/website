@@ -103,6 +103,31 @@ iframe {
     background-color: var(--highlight);
 }
 
+/* Tooltips */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: calc(var(--char-width) * 27);
+    background-color: var(--background);
+    position: absolute;
+    z-index: 100;
+    top: 0%;
+    left: 100%;
+}
+
+.tooltiptext * {
+    color: var(--foreground) !important;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
 /* Desktop */
 
 #title {
