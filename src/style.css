@@ -53,6 +53,12 @@ a {
     text-decoration-thickness: 2px;
 }
 
+ol, ul {
+    list-style-type: "- ";
+    margin: 0px;
+    padding-left: calc(var(--char-width) * 4);
+}
+
 a:hover {
     text-shadow: 0px 0px 10px var(--foreground);
     text-decoration: none;
