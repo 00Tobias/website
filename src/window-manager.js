@@ -2,11 +2,15 @@
 
 var windows = Array.from(document.getElementsByClassName("window"));
 
-const charWidth = document.getElementById("title").getBoundingClientRect().width / document.getElementById("title").textContent.length;
-const charHeight = document.getElementById("title").getBoundingClientRect().height;
+// Get the width and height of the (hopefully) monospace characters in the font by using the noscript notice
+const charWidth = document.getElementById("noscriptNotice").getBoundingClientRect().width / document.getElementById("noscriptNotice").textContent.length;
+const charHeight = document.getElementById("noscriptNotice").getBoundingClientRect().height;
 
 document.documentElement.style.setProperty("--char-width", charWidth + "px");
 document.documentElement.style.setProperty("--char-height", charHeight + "px");
+
+// Then remove it, since scripts are definitely enabled
+document.getElementById("noscriptNotice").style.display = "none";
 
 function fetchAndInjectHTML(url, targetDivId) {
     fetch(url)

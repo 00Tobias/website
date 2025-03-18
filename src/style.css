@@ -139,8 +139,11 @@ iframe {
 
 /* Desktop */
 
-#title {
+#noscriptNotice {
+    position: absolute;
     display: inline-block;
+    overflow: visible;
+    white-space: nowrap;
 }
 
 #mobileNotice {
