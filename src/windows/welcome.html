@@ -1,0 +1,25 @@
+<h1>Welcome</h1>
+<p>Welcome to <button onclick="window.location.hash = 'readme'"><b>my</b></button> personal website!
+  <br>
+      Click one of the desktop icons to have a look around.
+  <br>
+  <p id="mobileNotice"><b>NOTE: This website is best viewed on a larger screen.
+  </b></p>
+  <br>
+  <h1>Manual</h1>
+  <ol>
+    <li>Move windows by clicking and dragging the borders.</li>
+    <li>Resize windows by clicking and dragging the bottom right corner of the window.</li>
+    <li>The window controls on the top right of the window should behave as expected.</li>
+  </ol>
+</p>
+<style>
+  @media (max-width: 800px) {
+      #welcome {
+          height: 30% !important;
+          top: unset !important;
+          bottom: 0 !important;
+          z-index: 9999;
+      }
+  }
+</style>
