@@ -39,7 +39,7 @@ h1 {
 }
 
 p {
-    margin-top: var(--char-height);
+    margin-top: 0px;
     margin-bottom: 0px;
 }
 
