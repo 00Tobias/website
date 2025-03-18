@@ -38,6 +38,10 @@ function updateWindowStack() {
     }
 }
 
+if (!window.location.hash.slice(1)) {
+    createWindowList["welcome"]();
+}
+
 updateWindowStack();
 window.addEventListener("hashchange", updateWindowStack);
 
