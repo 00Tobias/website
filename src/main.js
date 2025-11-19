@@ -3,8 +3,7 @@
 import { createWindow } from "./window-manager.js";
 import { updateTaskbar } from "./taskbar.js";
 
-// A list of window paramters to createWindow()
-const createWindowList = {
+const createWindowList = { //     ID           Title            sW   sH  mW  mH
     // Desktop Icons
     welcome:   () => createWindow("welcome",   "Introduction",  58,  14, 34, 7),
     readme:    () => createWindow("readme",    "About Me",      89,  22, 38, 8),
@@ -16,7 +15,7 @@ const createWindowList = {
     console:   () => createWindow("console",   "console",       33,  9,  20, 4),
 
     // Projects
-    nightsrest: () => createWindow('nightsrest', 'nights.rest',  100, 30, 10, 6, "<iframe src='http://0.0.0.0:8000/#welcome' width='100%' height='100%'></iframe>"),
+    nightsrest: () => createWindow('nightsrest', 'nights.rest', 100, 30, 10, 6, "<iframe src='https://nights.rest/#welcome' width='100%' height='100%'></iframe>"),
 
     // Unlinked
     wheel:     () => createWindow("wheel",     "Pronoun Wheel", 55,  23, 35, 16),
