@@ -1,0 +1,18 @@
+# nights.rest
+
+This repo contains the source files for my personal website, at <https://nights.rest>. It's inspired by console user interfaces and floating window managers, and uses some fun ~~hacks~~ quirks to achieve it. The main website contains zero external libraries and is made entirely with vanilla HTML/CSS/JS, the only libraries are included in the different windows you can open, and are limited to what I absolutely can't be bothered coding myself.
+
+## How
+
+The windows are simple HTML files with embedded JavaScript and CSS that get fetched and injected to the document using JavaScript.
+Almost everything is based on the character width and height of a monospace font, which gets grabbed through reading the pixel height and pixel length of a div and dividing the length by the number of characters. 
+It's fully static with no backend code, and the only build step is optionally bundling and minifying the files in `src/` to cut down on the network transfer size.
+
+## Compile
+
+`build.sh` will bundle and minify JS and CSS files - and symlink others - into `dist/`
+
+```shell
+  sh build.sh
+```
+
