@@ -8,7 +8,7 @@ const createWindowList = {
     // Desktop Icons
     welcome:   () => createWindow("welcome",   "Introduction",  58,  14, 34, 7),
     readme:    () => createWindow("readme",    "About Me",      89,  22, 38, 8),
-    projects:  () => createWindow("projects", "Projects",      61,  9, 38, 8),
+    projects:  () => createWindow("projects",  "Projects",      62,  9,  38, 8),
     dragonfly: () => createWindow("dragonfly", "Dragonfly",     116, 38, 38, 8),
     frog:      () => createWindow("frog",      "frog",          26,  12, 26, 12),
 
