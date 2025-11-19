@@ -13,6 +13,6 @@ It's fully static with no backend code, and the only build step is optionally bu
 `build.sh` will bundle and minify JS and CSS files - and symlink others - into `dist/`
 
 ```shell
-  sh build.sh
+sh build.sh
 ```
 
