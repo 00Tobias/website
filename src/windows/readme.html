@@ -66,14 +66,41 @@
   const schemeInput = document.getElementById('schemeInput');
   const schemeOutput = document.getElementById('schemeOutput');
 
-  schemeInput.value = `(let ((interests
-       (list "Operating system design"
-             "Linux & BSD"
-             "Functional Programming"
-             "Frontend"
-             "Sysadmin & Backend"
-             "Language learning")))
-  (console-log interests))`;
+  schemeInput.value = `(define mem (make-vector 30000 0)) ; The tape of memory cells
+(define ptr 0) ; Pointer to the current memory cell
+(define srcptr 0) ; Pointer to the current character of the input string
+(define out (list)) ; The list of chars that will be outputted
+
+(define (eval-bf src)
+  (define (find-matching depth should-scan op)
+    (when should-scan
+      (set! srcptr (op srcptr 1))
+      (when (> depth 0)
+        (case (string-ref src srcptr)
+          ((#\\[) (find-matching (op depth 1) should-scan op))
+          ((#\\]) (find-matching ((if (eq? op +) - +) depth 1) should-scan op))
+          (else  (find-matching depth should-scan op))))))
+
+  (let loop ()
+    (when (< srcptr (string-length src))
+      (let ((cell (vector-ref mem ptr)))
+        (case (string-ref src srcptr)
+          ((#\\>) (set! ptr (+ ptr 1)))
+          ((#\\<) (set! ptr (- ptr 1)))
+          ((#\\+) (vector-set! mem ptr (modulo (+ cell 1) 256)))
+          ((#\\-) (vector-set! mem ptr (modulo (- cell 1) 256)))
+          ((#\\[) (find-matching 1 (zero? cell) +))
+          ((#\\]) (find-matching 1 (not (zero? cell)) -))
+          ;; , left intentionally unimplemented
+          ((#\\.) (set! out (append out (list (integer->char cell)))))))
+      (set! srcptr (+ srcptr 1))
+      (loop)))
+  (console-log (list->string out)))
+
+;; Be careful when editing this, it is *very* easy to create an infinite loop
+;; which will hang the JavaScript thread lol
+(eval-bf "--------[-->+++<]>.-----.-------------.+++++++.--------.--[--->+<]>--.[->+++++<]>+.+[--->+<]>+++.-----.--.+.++++++++++++.-.+[++>---<]>.[--->++<]>--.-------------.[--->+<]>----.+.")
+  `;
 
   function compile(input) {
       biwa.evaluate(input, function(result) {
