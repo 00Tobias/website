@@ -5,7 +5,7 @@ import { updateTaskbar } from "./taskbar.js";
 
 const createWindowList = { //     ID           Title            sW   sH  mW  mH
     // Desktop Icons
-    welcome:   () => createWindow("welcome",   "Introduction",  58,  14, 34, 7),
+    welcome:   () => createWindow("welcome",   "Introduction",  62,  16, 34, 7),
     readme:    () => createWindow("readme",    "readme.html",   89,  25, 38, 8),
     projects:  () => createWindow("projects",  "Projects",      62,  9,  38, 8),
     dragonfly: () => createWindow("dragonfly", "Dragonfly",     116, 38, 38, 8),
