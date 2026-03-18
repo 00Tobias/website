@@ -16,3 +16,5 @@ It's fully static with no backend code, and the only build step is optionally bu
 sh build.sh
 ```
 
+## Credits
+Thank you to Maciek Fitzner for writing the article [CSS geometric art: the Great Dodecahedron](https://mackfitz.hashnode.dev/css-geometric-art-the-great-dodecahedron) which contains the CSS I adapted to render the taskbar menu button dodecahedron.

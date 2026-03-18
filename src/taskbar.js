@@ -49,3 +49,18 @@ export function updateTaskbar(id) {
     Array.from(document.getElementsByClassName("taskbarEntry"))?.forEach((elm) => elm.classList.remove("taskbarActive"));
     document.getElementById(`${id}Taskbar`)?.classList.add("taskbarActive");
 }
+
+const menu = document.getElementById("menuButton");
+const dodecahedron = document.getElementById("menuDodecahedron");
+menu.addEventListener("mousemove", (e) => {
+    const menuRect = dodecahedron.getBoundingClientRect();
+    const x = e.clientX - (menuRect.left + menuRect.width / 2);
+    const y = e.clientY - (menuRect.top + menuRect.height / 2);
+    const rotateX = -(y * 3);
+    const rotateY = x * 3;
+    dodecahedron.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+menu.addEventListener("mouseleave", () => {
+    dodecahedron.style.transform = `rotateX(0deg) rotateY(0deg)`;
+});

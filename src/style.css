@@ -1,4 +1,5 @@
 :root {
+    --font: monospace;
     --char-width: 11px;
     --char-height: 27px;
     --background: #000000;
@@ -18,7 +19,7 @@ html, body {
 html * {
     font-size: 19px !important;
     color: var(--foreground);
-    font-family: monospace !important;
+    font-family: var(--font) !important;
     scrollbar-color: var(--foreground) var(--background);
 }
 
@@ -64,23 +65,30 @@ a:hover {
     text-decoration: none;
 }
 
-input, textarea {
+input, textarea, select {
     padding: 0;
     margin: 0;
-    border: 2px solid var(--accent);
-    outline: none;
+    height: var(--char-height);
+    outline: 2px solid var(--accent);
+    border: none;
     background: var(--background);
     resize: none;
 }
 
-button {
+input[type="color"] {
+    max-height: var(--char-height) !important;
+    width: calc(var(--char-width) * 3);
+}
+
+button, #menuButton {
+    /* all: unset; */
     padding: 0;
     margin: 0;
     border: 0;
     background-color: var(--accent);
 }
 
-button:hover {
+button:hover, #menuButton:hover, #menuSwitch:checked + #menuButton {
     color: var(--background);
     background-color: var(--foreground);
     box-shadow: 0px 0px 10px 0px var(--foreground);
@@ -110,6 +118,12 @@ iframe {
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: var(--highlight);
+}
+
+/* Small utils */
+
+.dim {
+    color: var(--brighter-accent);
 }
 
 /* Tooltips */
@@ -261,6 +275,122 @@ iframe {
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+/* Taskbar button */
+
+#menuSwitch {
+    display: none;
+}
+
+#menuSwitch:checked ~ #taskbarMenu {
+    display: block;
+}
+
+#menuSwitch:checked + #menuButton #menuDodecahedron {
+    transform: rotateX(90deg) rotateY(0deg) !important;
+}
+
+#menuButton {
+    min-width: calc(var(--char-width) * 5);
+    aspect-ratio: 1;
+    perspective: 250em;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+#menuButton, #menuDodecahedron {
+    height: calc(var(--char-height) * 2);
+    width: calc(var(--char-height) * 2);
+}
+
+#menuDodecahedron * {
+    position: absolute;
+}
+
+/* Credits to https://mackfitz.hashnode.dev/css-geometric-art-the-great-dodecahedron*/
+
+#menuDodecahedron {
+    --ngon: 5;
+    --unit: calc(1em*var(--unitScale));
+    --triAngle: calc(360deg/var(--ngon)); /* the central angle of the pentagon's triangular slice */
+    --a3gon: calc( sin( calc( var(--triAngle)/2 ) ) * 100 ); /* the base of a pentagon's triangular slice*/
+    --h3gon: calc( cos( calc( var(--triAngle)/2 ) ) * 50); /* the height of a pentagon's triangular slice*/
+    --h5gon: calc(var(--h3gon) + 50); /* total height of that same pentagon */
+    --pentAngle: asin(calc(var(--h3gon)/var(--h5gon))); /* the angle that the pentagon would be inclined at if it were leaning against the center pivot axis of another pentagon */
+    --pentH: calc(cos(var(--pentAngle)) * var(--h5gon)); /* the height at which the tip of that pentagon touches the pivot axis */
+    --median: calc((var(--a3gon)*sin(var(--triAngle)) + var(--h5gon))/2); /* the median value of the triangular slice's height and the pentagon's height */
+    --Hratio: calc(var(--median)/var(--h5gon)); /* ratio of the median and the pentagram's height */
+    --dodecaH: calc(var(--pentH)*var(--Hratio)); /* the height of the dodecahedron */
+    --unitScale: calc(1.76/var(--dodecaH));
+    inset: calc(50*(1em - var(--unit)));
+    zoom: 0.64;
+    margin: auto;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out;
+}
+
+.lid {
+    transform: rotateX(calc(-90deg*var(--dir))) translateZ(calc(var(--dodecaH)*var(--unit)));
+}
+
+.side {
+    transform: rotateY(calc(var(--step)*var(--triAngle) + .5turn))  rotateX(calc(var(--pentAngle)*-1 + 90deg + 90deg*var(--dir))) translateZ(calc(var(--dodecaH)*var(--unit)));
+}
+
+.wall {
+    inset: 0;
+    background: var(--foreground);
+    clip-path: polygon(
+            calc((1 - sin(calc(0*72deg)))*50%) calc((1 - cos(calc(0*72deg)))*50%),
+            calc((1 - sin(calc(1*72deg)))*50%) calc((1 - cos(calc(1*72deg)))*50%),
+            calc((1 - sin(calc(2*72deg)))*50%) calc((1 - cos(calc(2*72deg)))*50%),
+            calc((1 - sin(calc(3*72deg)))*50%) calc((1 - cos(calc(3*72deg)))*50%),
+            calc((1 - sin(calc(4*72deg)))*50%) calc((1 - cos(calc(4*72deg)))*50%)
+    );
+}
+
+.innerWall {
+    inset: 2px;
+    background: var(--darker-accent);
+    clip-path: polygon(
+        calc((1 - sin(calc(0*72deg)))*50%) calc((1 - cos(calc(0*72deg)))*50%),
+        calc((1 - sin(calc(1*72deg)))*50%) calc((1 - cos(calc(1*72deg)))*50%),
+        calc((1 - sin(calc(2*72deg)))*50%) calc((1 - cos(calc(2*72deg)))*50%),
+        calc((1 - sin(calc(3*72deg)))*50%) calc((1 - cos(calc(3*72deg)))*50%),
+        calc((1 - sin(calc(4*72deg)))*50%) calc((1 - cos(calc(4*72deg)))*50%)
+    );
+}
+
+
+.wall:nth-child(2n+1) { --dir: 1; }
+.wall:nth-child(2n)   { --dir: -1; }
+
+.wall:nth-child(1),  .wall:nth-child(2)  { --step: 0; }
+.wall:nth-child(3),  .wall:nth-child(4)  { --step: 1; }
+.wall:nth-child(5),  .wall:nth-child(6)  { --step: 2; }
+.wall:nth-child(7),  .wall:nth-child(8)  { --step: 3; }
+.wall:nth-child(9),  .wall:nth-child(10) { --step: 4; }
+.wall:nth-child(11), .wall:nth-child(12) { --step: 5; }
+
+/* Taskbar Menu */
+
+#taskbarMenu {
+    display: none;
+    bottom: calc(var(--char-height) * 2);
+    height: calc(var(--char-height) * 13) !important;
+    width: calc(var(--char-width) * 32) !important;
+    background: var(--accent);
+    position: fixed;
+}
+
+.taskbarMenuLine {
+    display: flex;
+}
+
+#languagePicker, #fontPicker {
+    width: calc(var(--char-width) * 11) !important;
 }
 
 /* Windows */
