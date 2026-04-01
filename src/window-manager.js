@@ -209,7 +209,7 @@ function handleWindow(win, minWidth, minHeight) {
     let isMoving = false;
     let offsetX, offsetY;
 
-    win.addEventListener("mousedown", (e) => {
+    win.addEventListener("pointerdown", (e) => {
         if (e.button === 2) {
             isMoving = false;
             isResizing = false;
@@ -236,7 +236,7 @@ function handleWindow(win, minWidth, minHeight) {
         }
     });
 
-    document.addEventListener("mousemove", (e) => {
+    document.addEventListener("pointermove", (e) => {
         if (isResizing) {
             const newWidth = e.clientX - win.getBoundingClientRect().left;
             const newHeight = e.clientY - win.getBoundingClientRect().top;
@@ -263,7 +263,7 @@ function handleWindow(win, minWidth, minHeight) {
         }
     });
 
-    document.addEventListener("mouseup", () => {
+    document.addEventListener("pointerup", () => {
         isResizing = false;
         isMoving = false;
     });
