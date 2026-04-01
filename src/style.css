@@ -126,6 +126,11 @@ iframe {
     color: var(--brighter-accent);
 }
 
+.itemContainer {
+    display: flex;
+    justify-content: space-between
+}
+
 /* Tooltips */
 
 .tooltip {
@@ -383,10 +388,6 @@ iframe {
     width: calc(var(--char-width) * 32) !important;
     background: var(--accent);
     position: fixed;
-}
-
-.taskbarMenuLine {
-    display: flex;
 }
 
 #languagePicker, #fontPicker {

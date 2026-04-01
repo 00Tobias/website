@@ -145,7 +145,7 @@
           |</div>
           <div class="windowContent">
             <h1>Text</h1>
-            <div class="taskbarMenuLine">
+            <div class="itemContainer">
               <select name="language" id="languagePicker">
                 <option value="">English</option>
                 <option value="se">Svenska</option>
@@ -153,44 +153,44 @@
               </select>
               <label for="languagePicker"><span class="dim">--------</span>--language</label>
             </div>
-            <div class="taskbarMenuLine">
+            <div class="itemContainer">
               <input type="text" id="fontPicker" name="font" value="monospace" oninput="document.documentElement.style.setProperty('--font', this.value)"/>
               <label for="fontPicker"><span class="dim">------------</span>--font</label>
             </div>
             <br>
             <!-- I wear my heart on my sleeve and my spaghetti in wherever it fits -->
             <h1>Colors</h1>
-            <div class="taskbarMenuLine">
+            <div class="itemContainer">
               <input type="color" id="backgroundPicker" value="#000000" oninput="document.documentElement.style.setProperty('--background', this.value); document.getElementById('backgroundValue').textContent = this.value"/>
               <label for="backgroundPicker">
                 <span class="dim">-<span id="backgroundValue" class="dim">#000000</span>------</span>--background
               </label>
             </div>
-            <div class="taskbarMenuLine">
+            <div class="itemContainer">
               <input type="color" id="foregroundPicker" value="#ffffff" oninput="document.documentElement.style.setProperty('--foreground', this.value); document.getElementById('foregroundValue').textContent = this.value"/>
               <label for="foregroundPicker">
                 <span class="dim">-<span id="foregroundValue" class="dim">#ffffff</span>------</span>--foreground
               </label>
             </div>
-            <div class="taskbarMenuLine">
+            <div class="itemContainer">
               <input type="color" id="accentPicker" value="#1c1c1c" oninput="document.documentElement.style.setProperty('--accent', this.value); document.getElementById('accentValue').textContent = this.value"/>
               <label for="accentPicker">
                 <span class="dim">-<span id="accentValue" class="dim">#1c1c1c</span>----------</span>--accent
               </label>
             </div>
-            <div class="taskbarMenuLine">
+            <div class="itemContainer">
               <input type="color" id="brighterAccentPicker" value="#404040" oninput="document.documentElement.style.setProperty('--brighter-accent', this.value); document.getElementById('brighterAccentValue').textContent = this.value"/>
               <label for="brighterAccentPicker">
                 <span class="dim">-<span id="brighterAccentValue" class="dim">#404040</span>-</span>--brighter-accent
               </label>
             </div>
-            <div class="taskbarMenuLine">
+            <div class="itemContainer">
               <input type="color" id="darkerAccentPicker" value="#0c0c0c" oninput="document.documentElement.style.setProperty('--darker-accent', this.value); document.getElementById('darkerAccentValue').textContent = this.value"/>
               <label for="darkerAccentPicker">
                 <span class="dim">-<span id="darkerAccentValue" class="dim">#0c0c0c</span>---</span>--darker-accent
               </label>
             </div>
-            <div class="taskbarMenuLine">
+            <div class="itemContainer">
               <input type="color" id="highlightPicker" value="#ff0000" oninput="document.documentElement.style.setProperty('--highlight', this.value); document.getElementById('highlightValue').textContent = this.value"/>
               <label for="highlightPicker">
                 <span class="dim">-<span id="highlightValue" class="dim">#ff0000</span>-------</span>--highlight
