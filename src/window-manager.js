@@ -57,8 +57,8 @@ export function createWindow(
     const windowDiv = document.createElement("div");
     windowDiv.className = "window";
     windowDiv.id = windowId;
-    windowDiv.style.width = charWidth * startingWidth + "px";
-    windowDiv.style.height = charHeight * startingHeight + "px";
+    windowDiv.style.width = Math.min((charWidth * startingWidth), Math.floor(document.documentElement.clientWidth / charWidth) * charWidth) + "px";
+    windowDiv.style.height = Math.min((charHeight * startingHeight), Math.floor(document.documentElement.clientHeight / charHeight) * charHeight) + "px";
 
     const windowTitlebarDiv = document.createElement("div");
     windowTitlebarDiv.className = "windowTitlebar";
