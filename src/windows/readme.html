@@ -1,66 +1,112 @@
-<p>This is a fully-featured <a href="https://www.biwascheme.org/" target="_blank">BiwaScheme</a> REPL, feel free to <a href="https://scheme.com/tspl4/start.html" target="_blank">poke around a little.</a></p>
+<p>
+    This is a fully-featured
+    <a href="https://www.biwascheme.org/" target="_blank">BiwaScheme</a> REPL, feel free to
+    <a href="https://scheme.com/tspl4/start.html" target="_blank">poke around a little.</a>
+</p>
 <div id="scheme">
-  <textarea id="schemeInput" name="schemeInput" rows="9" autofocus spellcheck="false" autocomplete="off" autocorrect="off"></textarea>
-  <div id="schemeOutput"></div>
+    <textarea
+        id="schemeInput"
+        name="schemeInput"
+        rows="9"
+        autofocus
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+    ></textarea>
+    <div id="schemeOutput"></div>
 </div>
-<button id="schemeBrowserConsole" onclick="window.location.hash = 'console'">open browser console</button>
-<div><h1>About Me</h1>&nbsp;&nbsp;<i class="dim">(yes, that is my code)</i></div>
-<p>My name is Tobias <button onclick="window.location.hash = 'wheel'">(any pronouns)</button>, I'm a 22 year old computer programmer from Sweden (looking to be hired) with a dedication to the minimal and introspectible.</p>
-<p>I'm drawn to systems amicable to being poked around, preferrably even while it is running, and have a strong distaste for impenetrable black boxes. I try to reflect this in code I write.</p>
-<p>I love the novel and doing things differently for the sake of it, as I think it gives me a better grasp of things when I see what the alternatives are like.</p><br>
+<button id="schemeBrowserConsole" onclick="window.location.hash = 'console'">
+    open browser console
+</button>
+<div>
+    <h1>About Me</h1>
+    &nbsp;&nbsp;<i class="dim">(yes, that is my code)</i>
+</div>
+<p>
+    My name is Tobias <button onclick="window.location.hash = 'wheel'">(any pronouns)</button>, I'm
+    a 22 year old computer programmer from Sweden (looking to be hired) with a dedication to the
+    minimal and introspectible.
+</p>
+<p>
+    I'm drawn to systems amicable to being poked around, preferrably even while it is running, and
+    have a strong distaste for impenetrable black boxes. I try to reflect this in code I write.
+</p>
+<p>
+    I love the novel and doing things differently for the sake of it, as I think it gives me a
+    better grasp of things when I see what the alternatives are like.
+</p>
+<br />
 <h1>Computers</h1>
-<p>I have been using Linux and BSDs since I was in grade school, and work fastest in front of a command line, I also host various services for myself and friends, and have hobby sysadmin experience.</p>
-<br>
+<p>
+    I have been using Linux and BSDs since I was in grade school, and work fastest in front of a
+    command line, I also host various services for myself and friends, and have hobby sysadmin
+    experience.
+</p>
+<br />
 <b>I know how to program competently in:</b>
 <ul>
-  <li>Clojure (<a href="https://shuffle.rodeo" target="_blank">shuffle.rodeo</a>, <a href="https://codeberg.org/terra/dragonfly" target="_blank">dragonfly</a>)</li>
-  <li>Common Lisp (<a href="https://codeberg.org/terra/prestidigitation" target="_blank">prestidigitation</a>)</li>
-  <li>Scheme (<a href="https://codeberg.org/terra/garden" target="_blank">digital garden</a>)</li>
-  <li>JavaScript & TypeScript (<a href="https://nights.rest/" target="_blank">nights.rest</a>)</li>
-  <li>Python (<a href="https://github.com/00Tobias/ma" target="_blank">ma</a>)</li>
-  <li>Rust (<a href="https://codeberg.org/terra/nihil" target="_blank">nihil</a>)</li>
+    <li>
+        Clojure (<a href="https://shuffle.rodeo" target="_blank">shuffle.rodeo</a>,
+        <a href="https://codeberg.org/terra/dragonfly" target="_blank">dragonfly</a>)
+    </li>
+    <li>
+        Common Lisp (<a href="https://codeberg.org/terra/prestidigitation" target="_blank"
+            >prestidigitation</a
+        >)
+    </li>
+    <li>Scheme (<a href="https://codeberg.org/terra/garden" target="_blank">digital garden</a>)</li>
+    <li>
+        JavaScript & TypeScript (<a href="https://nights.rest/" target="_blank">nights.rest</a>)
+    </li>
+    <li>Python (<a href="https://github.com/00Tobias/ma" target="_blank">ma</a>)</li>
+    <li>Rust (<a href="https://codeberg.org/terra/nihil" target="_blank">nihil</a>)</li>
 </ul>
-<br>
+<br />
 <p>(See <button onclick="window.location.hash = 'projects'">projects</button> for a full list)</p>
-<br>
+<br />
 <h1>Else</h1>
-<p>I am fluent in English and Swedish, adept at <a href="https://en.wikipedia.org/wiki/Toki_Pona" target="_blank">Toki Pona</a>, know a small amount of Spanish, and I am currently slowly learning Mandarin Chinese whenever I have the drive to.</p>
+<p>
+    I am fluent in English and Swedish, adept at
+    <a href="https://en.wikipedia.org/wiki/Toki_Pona" target="_blank">Toki Pona</a>, know a small
+    amount of Spanish, and I am currently slowly learning Mandarin Chinese whenever I have the drive
+    to.
+</p>
 <p>Outside of programming, I do cosplay, play and GM D&D and Pathfinder 2E, and write fiction.</p>
 <style>
-  #readmeWindowContent {
-      padding-left: var(--char-width);
-      padding-right: var(--char-width);
-      padding-bottom: var(--char-height);
-  }
+    #readmeWindowContent {
+        padding-left: var(--char-width);
+        padding-right: var(--char-width);
+        padding-bottom: var(--char-height);
+    }
 
-  #scheme {
-      display: grid;
-      gap: var(--char-height);
-      margin: var(--char-height) var(--char-width) var(--char-height) var(--char-width);
-  }
+    #scheme {
+        display: grid;
+        gap: var(--char-height);
+        margin: var(--char-height) var(--char-width) var(--char-height) var(--char-width);
+    }
 
-  #schemeInput {
-      resize: vertical;
-      min-height: calc(var(--char-height) * 13);
-  }
+    #schemeInput {
+        resize: vertical;
+        min-height: calc(var(--char-height) * 13);
+    }
 
-  #schemeOutput {
-      outline: 2px solid var(--accent);
-      min-height: calc(var(--char-height) * 2);
-  }
+    #schemeOutput {
+        outline: 2px solid var(--accent);
+        min-height: calc(var(--char-height) * 2);
+    }
 
-  #schemeBrowserConsole {
-      float: right;
-      margin-right: var(--char-width);
-  }
+    #schemeBrowserConsole {
+        float: right;
+        margin-right: var(--char-width);
+    }
 </style>
 <script type="module">
-  import BiwaScheme from 'https://cdn.jsdelivr.net/npm/biwascheme@0.8.0/release/biwascheme.min.mjs';
+    import BiwaScheme from "https://cdn.jsdelivr.net/npm/biwascheme@0.8.0/release/biwascheme.min.mjs";
 
-  const schemeInput = document.getElementById('schemeInput');
-  const schemeOutput = document.getElementById('schemeOutput');
+    const schemeInput = document.getElementById("schemeInput");
+    const schemeOutput = document.getElementById("schemeOutput");
 
-  schemeInput.value = `(define mem (make-vector 30000 0)) ; The tape of memory cells
+    schemeInput.value = `(define mem (make-vector 30000 0)) ; The tape of memory cells
 (define ptr 0) ; Pointer to the current memory cell
 (define srcptr 0) ; Pointer to the current character of the input string
 (define out (list)) ; The list of chars that will be outputted
@@ -96,42 +142,48 @@
 (eval-bf "--------[-->+++<]>.-----.-------------.+++++++.--------.--[--->+<]>--.[->+++++<]>+.+[--->+<]>+++.-----.--.+.++++++++++++.-.+[++>---<]>.[--->++<]>--.-------------.[--->+<]>----.+.")
   `;
 
-  function compile(input) {
-      biwa.evaluate(input, function(result) {
-          schemeOutput.textContent = result;
-          schemeOutput.style.outline = "2px solid var(--accent)";
-          schemeOutput.style.boxShadow = "none";
-      });
-  }
+    function compile(input) {
+        biwa.evaluate(input, function (result) {
+            schemeOutput.textContent = result;
+            schemeOutput.style.outline = "2px solid var(--accent)";
+            schemeOutput.style.boxShadow = "none";
+        });
+    }
 
-  const onError = function(e) {
-      schemeOutput.textContent = e;
-      schemeOutput.style.outline = "2px solid var(--highlight)";
-      schemeOutput.style.boxShadow = "0px 0px 10px 0px var(--highlight)";
-  }
-  const biwa = new BiwaScheme.Interpreter(onError)
-  compile(schemeInput.value);
-  schemeInput.addEventListener('input', function(e) {
-      // If the user inputs a parenthesis or ", automatically close it
-      if (e.data?.length === 1 && e.data === "(") {
-          const start = schemeInput.selectionStart;
-          const end = schemeInput.selectionEnd;
-          schemeInput.value = schemeInput.value.slice(0, start) + ")" + schemeInput.value.slice(start, schemeInput.value.length);
-          schemeInput.selectionStart = start;
-          schemeInput.selectionEnd = end;
-      }
-      if (e.data?.length === 1 && e.data === '"') {
-          const start = schemeInput.selectionStart;
-          const end = schemeInput.selectionEnd;
-          schemeInput.value = schemeInput.value.slice(0, start) + '"' + schemeInput.value.slice(start, schemeInput.value.length);
-          schemeInput.selectionStart = start;
-          schemeInput.selectionEnd = end;
-      }
+    const onError = function (e) {
+        schemeOutput.textContent = e;
+        schemeOutput.style.outline = "2px solid var(--highlight)";
+        schemeOutput.style.boxShadow = "0px 0px 10px 0px var(--highlight)";
+    };
+    const biwa = new BiwaScheme.Interpreter(onError);
+    compile(schemeInput.value);
+    schemeInput.addEventListener("input", function (e) {
+        // If the user inputs a parenthesis or ", automatically close it
+        if (e.data?.length === 1 && e.data === "(") {
+            const start = schemeInput.selectionStart;
+            const end = schemeInput.selectionEnd;
+            schemeInput.value =
+                schemeInput.value.slice(0, start) +
+                ")" +
+                schemeInput.value.slice(start, schemeInput.value.length);
+            schemeInput.selectionStart = start;
+            schemeInput.selectionEnd = end;
+        }
+        if (e.data?.length === 1 && e.data === '"') {
+            const start = schemeInput.selectionStart;
+            const end = schemeInput.selectionEnd;
+            schemeInput.value =
+                schemeInput.value.slice(0, start) +
+                '"' +
+                schemeInput.value.slice(start, schemeInput.value.length);
+            schemeInput.selectionStart = start;
+            schemeInput.selectionEnd = end;
+        }
 
-      // Automatically resize the input window to fit the entire code
-      schemeInput.style.height = "auto";
-      schemeInput.style.height = (schemeInput.scrollHeight) + "px";
+        // Automatically resize the input window to fit the entire code
+        schemeInput.style.height = "auto";
+        schemeInput.style.height = schemeInput.scrollHeight + "px";
 
-      compile(schemeInput.value);
-  });
+        compile(schemeInput.value);
+    });
 </script>

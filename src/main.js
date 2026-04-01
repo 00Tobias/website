@@ -3,6 +3,7 @@
 import { createWindow } from "./window-manager.js";
 import { updateTaskbar } from "./taskbar.js";
 
+// prettier-ignore
 const createWindowList = { //     ID           Title            sW   sH  mW  mH
     // Desktop Icons
     welcome:   () => createWindow("welcome",   "Introduction",  62,  16, 34, 7),
@@ -45,6 +46,6 @@ updateWindowStack();
 window.addEventListener("hashchange", updateWindowStack);
 
 updateTaskbar(window.location.hash.slice(1));
-window.addEventListener("hashchange", function() {
+window.addEventListener("hashchange", function () {
     updateTaskbar(window.location.hash.slice(1));
 });

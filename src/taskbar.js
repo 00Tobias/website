@@ -39,14 +39,16 @@ export function updateTaskbar(id) {
     }
 
     // If a window got closed, remove the taskbar entry
-    const closedWindow = Object.keys(oldWindowList).find(id => !(id in openWindowList));
+    const closedWindow = Object.keys(oldWindowList).find((id) => !(id in openWindowList));
     if (closedWindow) {
         document.getElementById(`${closedWindow}Taskbar`)?.remove();
         oldWindowList = { ...openWindowList };
     }
 
     // Highlight the focused window
-    Array.from(document.getElementsByClassName("taskbarEntry"))?.forEach((elm) => elm.classList.remove("taskbarActive"));
+    Array.from(document.getElementsByClassName("taskbarEntry"))?.forEach((elm) =>
+        elm.classList.remove("taskbarActive"),
+    );
     document.getElementById(`${id}Taskbar`)?.classList.add("taskbarActive");
 }
 

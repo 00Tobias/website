@@ -3,7 +3,9 @@
 var windows = Array.from(document.getElementsByClassName("window"));
 
 // Get the width and height of the (hopefully) monospace characters in the font by using the noscript notice
-const charWidth = document.getElementById("noscriptNotice").getBoundingClientRect().width / document.getElementById("noscriptNotice").textContent.length;
+const charWidth =
+    document.getElementById("noscriptNotice").getBoundingClientRect().width /
+    document.getElementById("noscriptNotice").textContent.length;
 const charHeight = document.getElementById("noscriptNotice").getBoundingClientRect().height;
 
 document.documentElement.style.setProperty("--char-width", charWidth + "px");
@@ -14,15 +16,15 @@ document.getElementById("noscriptNotice").style.display = "none";
 
 function fetchAndInjectHTML(url, targetDivId) {
     fetch(url)
-        .then(response => response.text())
-        .then(html => {
+        .then((response) => response.text())
+        .then((html) => {
             const targetDiv = document.getElementById(targetDivId);
             // FIXME: https://developer.mozilla.org/en-US/docs/Web/API/Element/setHTML#browser_compatibility
             targetDiv.innerHTML = html;
 
             const scripts = targetDiv.querySelectorAll("script");
 
-            scripts.forEach(script => {
+            scripts.forEach((script) => {
                 const newScript = document.createElement("script");
 
                 const attributes = script.attributes;
@@ -37,7 +39,7 @@ function fetchAndInjectHTML(url, targetDivId) {
                 document.body.appendChild(newScript);
             });
         })
-        .catch(error => console.error("Error fetching HTML:", error));
+        .catch((error) => console.error("Error fetching HTML:", error));
 }
 
 export function createWindow(
@@ -47,7 +49,7 @@ export function createWindow(
     startingHeight = 10,
     minWidth = 18,
     minHeight = 5,
-    content = null
+    content = null,
 ) {
     if (document.getElementById(windowId)) {
         raiseWindow(document.getElementById(windowId));
@@ -57,13 +59,22 @@ export function createWindow(
     const windowDiv = document.createElement("div");
     windowDiv.className = "window";
     windowDiv.id = windowId;
-    windowDiv.style.width = Math.min((charWidth * startingWidth), Math.floor(document.documentElement.clientWidth / charWidth) * charWidth) + "px";
-    windowDiv.style.height = Math.min((charHeight * startingHeight), Math.floor(document.documentElement.clientHeight / charHeight) * charHeight) + "px";
+    windowDiv.style.width =
+        Math.min(
+            charWidth * startingWidth,
+            Math.floor(document.documentElement.clientWidth / charWidth) * charWidth,
+        ) + "px";
+    windowDiv.style.height =
+        Math.min(
+            charHeight * startingHeight,
+            Math.floor(document.documentElement.clientHeight / charHeight) * charHeight,
+        ) + "px";
 
     const windowTitlebarDiv = document.createElement("div");
     windowTitlebarDiv.className = "windowTitlebar";
     // yes, this is actually how i do it. it works alright (it also compressess well)
-    windowTitlebarDiv.textContent = "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+    windowTitlebarDiv.textContent =
+        "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 
     const windowTitleDiv = document.createElement("div");
     windowTitleDiv.className = "windowTitle";
@@ -78,19 +89,37 @@ export function createWindow(
     const windowMinimizeDiv = document.createElement("div");
     windowMinimizeDiv.className = "windowMinimizeButton";
     windowMinimizeDiv.appendChild(document.createTextNode("_"));
-    windowMinimizeDiv.addEventListener("click", function(){ minimizeWindow(windowDiv);}, false);
+    windowMinimizeDiv.addEventListener(
+        "click",
+        function () {
+            minimizeWindow(windowDiv);
+        },
+        false,
+    );
     windowControlsDiv.appendChild(windowMinimizeDiv);
 
     const windowMaximizeDiv = document.createElement("div");
     windowMaximizeDiv.className = "windowMaximizeButton";
     windowMaximizeDiv.appendChild(document.createTextNode("^"));
-    windowMaximizeDiv.addEventListener("click", function(){ maximizeWindow(windowDiv);}, false);
+    windowMaximizeDiv.addEventListener(
+        "click",
+        function () {
+            maximizeWindow(windowDiv);
+        },
+        false,
+    );
     windowControlsDiv.appendChild(windowMaximizeDiv);
 
     const windowCloseDiv = document.createElement("div");
     windowCloseDiv.className = "windowCloseButton";
     windowCloseDiv.appendChild(document.createTextNode("X"));
-    windowCloseDiv.addEventListener("click", function(){ closeWindow(windowDiv);}, false);
+    windowCloseDiv.addEventListener(
+        "click",
+        function () {
+            closeWindow(windowDiv);
+        },
+        false,
+    );
     windowControlsDiv.appendChild(windowCloseDiv);
 
     const windowContentDiv = document.createElement("div");
@@ -105,7 +134,8 @@ export function createWindow(
 
     const windowBottomDiv = document.createElement("div");
     windowBottomDiv.className = "windowBottom";
-    windowBottomDiv.textContent = "\\----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+    windowBottomDiv.textContent =
+        "\\----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
 
     const windowHandleDiv = document.createElement("div");
     windowHandleDiv.className = "windowHandle";
@@ -114,11 +144,13 @@ export function createWindow(
 
     const windowLeftSideDiv = document.createElement("div");
     windowLeftSideDiv.className = "windowLeftSide";
-    windowLeftSideDiv.textContent = "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|";
+    windowLeftSideDiv.textContent =
+        "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|";
 
     const windowRightSideDiv = document.createElement("div");
     windowRightSideDiv.className = "windowRightSide";
-    windowRightSideDiv.textContent = "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|";
+    windowRightSideDiv.textContent =
+        "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|";
 
     windowDiv.appendChild(windowTitlebarDiv);
     windowDiv.appendChild(windowLeftSideDiv);
@@ -128,8 +160,13 @@ export function createWindow(
     document.getElementById("windows").appendChild(windowDiv);
 
     // Create windows in the middle of the viewport, rounded to the character size
-    windowDiv.style.left = Math.round(((window.innerWidth / 2) - (windowDiv.offsetWidth / 2)) / charWidth) * charWidth + "px";
-    windowDiv.style.top = Math.round(((window.innerHeight / 2) - (windowDiv.offsetHeight / 2)) / charHeight) * charHeight + "px";
+    windowDiv.style.left =
+        Math.round((window.innerWidth / 2 - windowDiv.offsetWidth / 2) / charWidth) * charWidth +
+        "px";
+    windowDiv.style.top =
+        Math.round((window.innerHeight / 2 - windowDiv.offsetHeight / 2) / charHeight) *
+            charHeight +
+        "px";
 
     openWindowList[windowDiv.id] = windowTitleDiv.textContent;
     window.location.hash = windowDiv.id;
@@ -252,7 +289,8 @@ function handleWindow(win, minWidth, minHeight) {
 
             if (windowMaximized) {
                 maximizeWindow(win);
-                win.style.left = Math.round((e.clientX - (win.offsetWidth / 2)) / charWidth) * charWidth + "px";
+                win.style.left =
+                    Math.round((e.clientX - win.offsetWidth / 2) / charWidth) * charWidth + "px";
                 win.style.top = Math.round(e.clientY / charHeight) * charHeight + "px";
                 offsetX = e.clientX - win.getBoundingClientRect().left;
                 offsetY = e.clientY - win.getBoundingClientRect().top;
@@ -269,6 +307,6 @@ function handleWindow(win, minWidth, minHeight) {
     });
 }
 
-windows.forEach(window => {
+windows.forEach((window) => {
     handleWindow(window);
 });
